@@ -13,7 +13,14 @@ class ExampleTest extends TestCase
      */
     public function testBasicExample()
     {
-        $this->visit('/')
-             ->see('Resto Presto');
+        $name = "John Doe";
+        $id = 1;
+
+        $user = new \App\User();
+        $user->id = $id;
+        $user->name = $name;
+
+        $this->assertEquals($id, $user->id);
+        $this->assertEquals($name, $user->name);
     }
 }
