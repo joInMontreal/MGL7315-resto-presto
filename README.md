@@ -7,42 +7,42 @@
 	et [Vagrant](https://www.vagrantup.com/downloads.html)
 
 0. Pointez le nom de domaine sur l'IP de la machine virtuelle :
-	```
-	sudo sh -c 'echo "192.168.17.227 resto-presto.local" >> /etc/hosts'
-	```
+```
+sudo sh -c 'echo "192.168.17.227 resto-presto.local" >> /etc/hosts'
+```
 
 1. Créez un répertoire "resto" :
-	```
-	mkdir resto && cd resto
-	```
+```
+mkdir resto && cd resto
+```
 2. Clonez l'environment :
-	```
-	git clone https://github.com/joInMontreal/MGL7315-env.git
-	```
+```
+git clone https://github.com/joInMontreal/MGL7315-env.git
+```
 3. Clonez le code source :
-	```
-	git clone https://github.com/joInMontreal/MGL7315-resto-presto.git
-	```
+```
+git clone https://github.com/joInMontreal/MGL7315-resto-presto.git
+```
 4. Démarrez la machine virtuelle :
-	```
-	cd MGL7315-env
-	vagrant up
-	```
+```
+cd MGL7315-env
+vagrant up
+```
 5. Installez l'application :
-	```
-	# connexion ssh dans la machine virtuelle
-	vagrant ssh
+```
+# connexion ssh dans la machine virtuelle
+vagrant ssh
 
-	# Installez les dépendances
-	cd ~/resto-presto
-	composer install
+# Installez les dépendances
+cd ~/resto-presto
+composer install
 
-	# Installez les migrations de schema
-	php artisan migration
+# Installez les migrations de schema
+php artisan migration
 
-	# Générez des données fictives
-    php artisan db:seed
-	```
+# Générez des données fictives
+php artisan db:seed
+```
 6. Ouvrez un navigateur et ouvrez : [http://resto-presto.local](http://resto-presto.local)
 
 ## H2 Accédez à la base de données sur la VM :
