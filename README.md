@@ -57,6 +57,6 @@ Utilsez votre MySQL client favoris avec pont SSH (MySQL Workbench ou Sequel Pro)
 - SSH username : vagrant
 - SSH password : vagrant
 
-## H2 Serveur d'inteégration
+## H2 Serveur d'intégration
 
 Travis : [https://travis-ci.org/joInMontreal/MGL7315-resto-presto](https://travis-ci.org/joInMontreal/MGL7315-resto-presto)
