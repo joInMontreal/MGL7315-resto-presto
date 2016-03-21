@@ -6,29 +6,29 @@
 	Installez [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
 	et [Vagrant](https://www.vagrantup.com/downloads.html)
 
-0. Pointez le nom de domaine sur l'IP de la machine virtuelle :
+- Pointez le nom de domaine sur l'IP de la machine virtuelle :
 ```
 sudo sh -c 'echo "192.168.17.227 resto-presto.local" >> /etc/hosts'
 ```
 
-1. Créez un répertoire "resto" :
+- Créez un répertoire "resto" :
 ```
 mkdir resto && cd resto
 ```
-2. Clonez l'environment :
+- Clonez l'environment :
 ```
 git clone https://github.com/joInMontreal/MGL7315-env.git
 ```
-3. Clonez le code source :
+- Clonez le code source :
 ```
 git clone https://github.com/joInMontreal/MGL7315-resto-presto.git
 ```
-4. Démarrez la machine virtuelle :
+- Démarrez la machine virtuelle :
 ```
 cd MGL7315-env
 vagrant up
 ```
-5. Installez l'application :
+- Installez l'application :
 ```
 # connexion ssh dans la machine virtuelle
 vagrant ssh
@@ -43,7 +43,7 @@ php artisan migration
 # Générez des données fictives
 php artisan db:seed
 ```
-6. Ouvrez un navigateur et ouvrez : [http://resto-presto.local](http://resto-presto.local)
+- Ouvrez un navigateur et ouvrez : [http://resto-presto.local](http://resto-presto.local)
 
 ## H2 Accédez à la base de données sur la VM :
 
