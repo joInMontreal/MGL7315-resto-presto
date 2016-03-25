@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+namespace Tests;
+
+use App\User;
 
 class ExampleTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ExampleTest extends TestCase
         $name = "John Doe";
         $id = 1;
 
-        $user = new \App\User();
+        $user = new User();
         $user->id = $id;
         $user->name = $name;
 
