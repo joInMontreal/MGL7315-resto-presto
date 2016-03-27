@@ -123,4 +123,12 @@ class Reservations extends Controller
         $response['customer'] = $reservation->customer->toArray();
         return response()->json($response);
     }
+
+    public function confirmation($reservationId)
+    {
+        $reservation = Reservation::find($reservationId);
+//        $data = $reservation->toArray();
+//        $data['customer'] = $reservation->customer->toArray();
+        return view('reservation_confirmation', ['reservation' => $reservation]);
+    }
 }

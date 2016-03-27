@@ -15,7 +15,7 @@ $(function () {
 				if (response.status == 0) {
 					showErrorMessage(response.message);
 				} else {
-					window.location = '/reservation/' + response.data.id;
+					window.location = '/reservation/' + response.data.id + '/confirmation';
 				}
 			},
 			error: function() {

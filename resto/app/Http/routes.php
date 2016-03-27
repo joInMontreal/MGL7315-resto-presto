@@ -14,6 +14,7 @@
 Route::get('/', 'Home@welcome');
 Route::get('/reserve', 'Reservations@showForm');
 Route::get('/reservation/{reservationId}', 'Reservations@single');
+Route::get('/reservation/{reservationId}/confirmation', 'Reservations@confirmation');
 Route::post('/reserve', 'Reservations@reserve');
 
 /*

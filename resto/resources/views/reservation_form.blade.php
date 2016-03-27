@@ -83,5 +83,5 @@
 @section('js')
     <script src="/assets/js/vendor/moment.js"></script>
     <script src="/assets/js/vendor/bootstrap-datetimepicker.min.js"></script>
-    <script src="/assets/js/reserve.js"></script>
+    <script src="/assets/js/reserve.js?v1"></script>
 @endsection
