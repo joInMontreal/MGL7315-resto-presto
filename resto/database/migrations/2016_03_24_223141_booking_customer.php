@@ -28,9 +28,10 @@ class BookingCustomer extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('reserved_at');
-            $table->dateTime('nb_invites');
+            $table->integer('nb_invites');
             $table->dateTime('created_at');
             $table->dateTime('updated_at');
+            $table->string('occasion');
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers');
         });

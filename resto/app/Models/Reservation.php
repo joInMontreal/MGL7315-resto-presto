@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Date;
 use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
@@ -26,6 +27,8 @@ class Reservation extends Model
             'customer_id' => $customer->id,
             'nb_invites' => $nbInvite,
             'reserved_at' => $reservedAt,
+            'created_at' => Date::now(),
+            'updated_at' => Date::now(),
         ]);
     }
 }

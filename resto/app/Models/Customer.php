@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Date;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -21,6 +22,8 @@ class Customer extends Model
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
+            'created_at' => Date::now(),
+            'updated_at' => Date::now(),
         ]);
     }
 }

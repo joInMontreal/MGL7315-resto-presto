@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => \App\Helpers\Date::DEFAULT_TIMEZONE,
 
     /*
     |--------------------------------------------------------------------------
