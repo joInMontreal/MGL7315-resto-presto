@@ -34,7 +34,6 @@
     <div class="content">
         <div class="title">Nouvelle réservation #{{ $reservation->id }}</div>
         <p><strong>Nom :</strong> {{ $reservation->customer->first_name }} {{ $reservation->customer->last_name }}</p>
-        <p><strong>Adresse :</strong> {{ $reservation->customer->address }} {{ $reservation->customer->city }}</p>
         <p><strong>Date :</strong> {{ $reservedAt }}</p>
         <p><strong>Nombre d'invité :</strong> {{ $reservation->nb_invites }}</p>
         @if ($reservation->occasion)

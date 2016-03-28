@@ -32,8 +32,6 @@ class Reservations extends Controller
         return [
             'first_name' => 'Prénom',
             'last_name' => 'Nom',
-            'city' => 'Ville',
-            'address' => 'Adresse',
             'phone' => 'Téléphone',
             'email' => 'Email',
             'reserved_at' => 'Date de réservation',
@@ -70,8 +68,6 @@ class Reservations extends Controller
             $this->validator->validateRequest($request, [
                 'first_name' => Validator::VALIDATOR_STRING,
                 'last_name' => Validator::VALIDATOR_STRING,
-                'city' => Validator::VALIDATOR_STRING,
-                'address' => Validator::VALIDATOR_STRING,
                 'phone' => Validator::VALIDATOR_STRING,
                 'email' => Validator::VALIDATOR_EMAIL,
                 'reserved_at' => Validator::VALIDATOR_DATETIME,
@@ -92,8 +88,6 @@ class Reservations extends Controller
                 $request->json('last_name'),
                 $request->json('email')
             );
-            $customer->city = $request->json('city', '');
-            $customer->address = $request->json('address', '');
             $customer->phone = $request->json('phone', '');
             $customer->save();
             $reservation = Reservation::build(

@@ -9,7 +9,6 @@
     </div>
     <p class="col-sm-offset-2 lead">
         <strong>Nom :</strong> {{ $reservation->customer->first_name }} {{ $reservation->customer->last_name }}<br />
-        <strong>Adresse :</strong> {{ $reservation->customer->address }} {{ $reservation->customer->city }}<br />
         <strong>Date :</strong> {{ $reservation->reserved_at }}<br />
         <strong>Nombre d'invité :</strong> {{ $reservation->nb_invites }}<br />
         <strong>Créée à :</strong> {{ $reservation->created_at }}<br />

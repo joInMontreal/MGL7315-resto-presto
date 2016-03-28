@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h2>Réservez dans votre restaurant favoris</h2>
+        <h2>Réservez dans votre restaurant favori</h2>
         <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
     </div>
 
@@ -26,18 +26,6 @@
                 <label for="input2" class="col-sm-4 control-label">Nom</label>
                 <div class="col-sm-8">
                     <input required name="last_name" type="text" class="form-control" id="input2" placeholder="Nom">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="input3" class="col-sm-4 control-label">Adresse</label>
-                <div class="col-sm-8">
-                    <input name="address" type="text" class="form-control" id="input3" placeholder="Adresse">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="input4" class="col-sm-4 control-label">Ville</label>
-                <div class="col-sm-8">
-                    <input name="city" type="text" class="form-control" id="input4" placeholder="Ville">
                 </div>
             </div>
             <div class="form-group">
@@ -67,7 +55,13 @@
             <div class="form-group">
                 <label for="input7" class="col-sm-4 control-label">Ocassion</label>
                 <div class="col-sm-8">
-                    <input name="occasion" type="text" class="form-control" id="input7" placeholder="Occasion">
+                    <select name="occasion" class="form-control" id="input7">
+                        <option value="">Choisir une option</option>
+                        <option value="Diner d'affaire">Diner d'affaire</option>
+                        <option value="Anniversaire">Anniversaire</option>
+                        <option value="Repas en amoureux">Repas en amoureux</option>
+                        <option value="Autre">Autre</option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">
