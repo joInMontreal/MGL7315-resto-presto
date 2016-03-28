@@ -8,6 +8,7 @@ use App\Helpers\Validator;
 use App\Models\Customer;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class Reservations extends Controller
 {
@@ -38,6 +39,9 @@ class Reservations extends Controller
             'reserved_at' => 'Date de réservation',
             'nb_invites' => 'Nombre d\'invités',
             'occasion' => 'Ocassion',
+            'nb_hours' => 'Durée',
+            'status' => 'Statut',
+            'note' => 'Note',
         ];
     }
 
@@ -83,7 +87,6 @@ class Reservations extends Controller
 
             $this->validateReservedAt($reservedAt);
 
-
             $customer = Customer::build(
                 $request->json('first_name'),
                 $request->json('last_name'),
@@ -100,6 +103,17 @@ class Reservations extends Controller
             );
             $reservation->occasion = $request->json('occasion');
             $reservation->save();
+
+            Mail::send('emails.reservation_new', [
+                'reservation' => $reservation,
+                'reservedAt' => $reservation->reserved_at->format('Y-m-d H:i'),
+                'baseUrl' => env('BASE_URL'),
+            ], function ($m) use ($reservation) {
+                $m->from('no-reply@muschalle.com', 'RestoPresto');
+                $m->subject('Nouvelle réservation');
+                $m->to(env('ADMIN_EMAIL'), 'Resto admin');
+            });
+
             $data = $reservation->toArray();
             $data['customer'] = $customer->toArray();
             $response = [
@@ -127,8 +141,49 @@ class Reservations extends Controller
     public function confirmation($reservationId)
     {
         $reservation = Reservation::find($reservationId);
-//        $data = $reservation->toArray();
-//        $data['customer'] = $reservation->customer->toArray();
         return view('reservation_confirmation', ['reservation' => $reservation]);
+    }
+
+    public function detail($reservationId)
+    {
+        $reservation = Reservation::find($reservationId);
+        return view('reservation_detail', [
+            'reservation' => $reservation,
+            'statusNew' => Reservation::STATUS_NEW,
+            'statusAccepted' => Reservation::STATUS_ACCEPTED,
+            'statusRefused' => Reservation::STATUS_REFUSED,
+        ]);
+    }
+
+    public function confirm(Request $request)
+    {
+        try {
+            $this->validator->validateRequest($request, [
+                'nb_hours' => Validator::VALIDATOR_NUMBER,
+                'note' => Validator::VALIDATOR_STRING,
+                'status' => Validator::VALIDATOR_NUMBER,
+            ], $this->translation());
+            $reservationId = $request->json('reservation_id');
+            $reservation = Reservation::find($reservationId);
+
+            $reservation->note = $request->json('note');
+            $reservation->nb_hours = $request->json('nb_hours');
+            if ($reservation->status != $request->json('status')) {
+                $reservation->status = $request->json('status');
+            }
+            $reservation->save();
+            $response = [
+                'status' => 1,
+                'data' => $reservation->toArray(),
+            ];
+
+        } catch (\Exception $e) {
+            $response = [
+                'status' => 0,
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+            ];
+        }
+        return response()->json($response);
     }
 }

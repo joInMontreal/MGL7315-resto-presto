@@ -3,8 +3,22 @@ function showErrorMessage(msg) {
 	$('#messageBox').html("<strong>Oops!</strong> " + msg);
 }
 
+function disableBtn()
+{
+	$('#reserveBtn').attr('disabled', 'disabled');
+	$('#reserveBtn').text('Patientez...');
+}
+
+function enableBtn()
+{
+	$('#reserveBtn').removeAttr('disabled');
+	$('#reserveBtn').text('Réserver');
+}
+
+
 $(function () {
 	$('#reserveForm').submit(function(e) {
+		disableBtn();
 		e.preventDefault();
 		$('#messageBox').addClass('hide');
 		$.ajax({
@@ -17,9 +31,11 @@ $(function () {
 				} else {
 					window.location = '/reservation/' + response.data.id + '/confirmation';
 				}
+				enableBtn();
 			},
 			error: function() {
 				showErrorMessage("Une erreur s'est produite...");
+				enableBtn();
 			},
 			processData: false,
 			type: 'POST',

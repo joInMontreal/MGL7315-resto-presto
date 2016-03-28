@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
-                    <button id="reserveBtn" type="submit" class="btn btn-default">Réserver</button>
+                    <button id="reserveBtn" type="submit" class="btn btn-primary">Réserver</button>
                 </div>
             </div>
         </form>
