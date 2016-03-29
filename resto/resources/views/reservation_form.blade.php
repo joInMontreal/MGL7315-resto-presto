@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="input5" class="col-sm-4 control-label">Téléphone</label>
                 <div class="col-sm-8">
-                    <input required name="phone" type="text" class="form-control" id="input5" placeholder="Téléphone">
+                    <input required name="phone" type="text" class="form-control" id="input5" placeholder="Téléphone (ex: 123-123-1234)">
                 </div>
             </div>
             <div class="form-group">

@@ -35,8 +35,8 @@ class Validator
                     }
                     break;
                 case self::VALIDATOR_PHONE:
-                    if (preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $value) === false) {
-                        throw new RestoError("{$field} n'est pas un numéro de téléphone valide");
+                    if (!$this->validPhone2($value)) {
+                        throw new RestoError("{$field} ($value) n'est pas un numéro de téléphone valide : 123-123-1234");
                     }
                     break;
                 case self::VALIDATOR_DATETIME:
@@ -50,4 +50,16 @@ class Validator
             }
         }
     }
+
+    protected function validPhone($phone)
+    {
+        return (
+            !preg_match("/^([1]-)?[0-9]{3}-[0-9]{3}-[0-9]{4}$/i", $phone) &&
+            !preg_match("/^([1]-)?[0-9]{3}.[0-9]{3}.[0-9]{4}$/i", $phone) &&
+            !preg_match("/^([1]-)?\([0-9]{3}\) [0-9]{3}-[0-9]{4}$/i", $phone) &&
+            !preg_match("/^[0-9]{10}$/i", $phone))
+            ? false
+            : true;
+    }
+
 }
