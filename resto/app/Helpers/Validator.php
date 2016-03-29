@@ -35,7 +35,7 @@ class Validator
                     }
                     break;
                 case self::VALIDATOR_PHONE:
-                    if (!$this->validPhone2($value)) {
+                    if (!$this->validPhone($value)) {
                         throw new RestoError(
                             "{$field} ($value) n'est pas un numéro de téléphone " .
                             "valide : 123-123-1234"
