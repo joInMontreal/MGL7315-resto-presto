@@ -68,7 +68,7 @@ class Reservations extends Controller
             $this->validator->validateRequest($request, [
                 'first_name' => Validator::VALIDATOR_STRING,
                 'last_name' => Validator::VALIDATOR_STRING,
-                'phone' => Validator::VALIDATOR_STRING,
+                'phone' => Validator::VALIDATOR_PHONE,
                 'email' => Validator::VALIDATOR_EMAIL,
                 'reserved_at' => Validator::VALIDATOR_DATETIME,
                 'nb_invites' => Validator::VALIDATOR_NUMBER,

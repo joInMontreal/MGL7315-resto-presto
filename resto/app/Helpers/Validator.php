@@ -10,6 +10,7 @@ class Validator
     const VALIDATOR_STRING = 'string';
     const VALIDATOR_EMAIL = 'email';
     const VALIDATOR_NUMBER = 'number';
+    const VALIDATOR_PHONE = 'phone';
     const VALIDATOR_DATETIME = 'datetime';
 
     public function validateRequest(Request $request, array $rules, array $translations)
@@ -31,6 +32,11 @@ class Validator
                 case self::VALIDATOR_NUMBER:
                     if (!is_numeric($value)) {
                         throw new RestoError("{$field} n'est pas un nombre");
+                    }
+                    break;
+                case self::VALIDATOR_PHONE:
+                    if (preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $value) === false) {
+                        throw new RestoError("{$field} n'est pas un numéro de téléphone valide");
                     }
                     break;
                 case self::VALIDATOR_DATETIME:
