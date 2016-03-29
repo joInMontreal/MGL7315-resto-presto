@@ -97,16 +97,7 @@ class Reservations extends Controller
             );
             $reservation->occasion = $request->json('occasion');
             $reservation->save();
-
-            Mail::send('emails.reservation_new', [
-                'reservation' => $reservation,
-                'reservedAt' => $reservation->reserved_at->format('Y-m-d H:i'),
-                'baseUrl' => env('BASE_URL'),
-            ], function ($m) use ($reservation) {
-                $m->from('no-reply@muschalle.com', 'RestoPresto');
-                $m->subject('Nouvelle réservation');
-                $m->to(env('ADMIN_EMAIL'), 'Resto admin');
-            });
+            $reservation->sendRestoNotification();
 
             $data = $reservation->toArray();
             $data['customer'] = $customer->toArray();
@@ -160,11 +151,8 @@ class Reservations extends Controller
             $reservationId = $request->json('reservation_id');
             $reservation = Reservation::find($reservationId);
 
-            $reservation->note = $request->json('note');
             $reservation->nb_hours = $request->json('nb_hours');
-            if ($reservation->status != $request->json('status')) {
-                $reservation->status = $request->json('status');
-            }
+            $reservation->setStatus($request->json('status'), $request->json('note'));
             $reservation->save();
             $response = [
                 'status' => 1,

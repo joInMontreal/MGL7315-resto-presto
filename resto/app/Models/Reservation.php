@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Helpers\Date;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class Reservation extends Model
 {
@@ -46,5 +47,63 @@ class Reservation extends Model
             'created_at' => Date::now(),
             'updated_at' => Date::now(),
         ]);
+    }
+
+    public function sendRestoNotification()
+    {
+        $reservation = $this;
+        Mail::send('emails.reservation_new', [
+            'reservation' => $reservation,
+            'reservedAt' => $this->reserved_at->format('Y-m-d H:i'),
+            'baseUrl' => env('BASE_URL'),
+        ], function ($m) use ($reservation) {
+            $m->from('no-reply@muschalle.com', 'RestoPresto');
+            $m->subject('Nouvelle réservation');
+            $m->to(env('ADMIN_EMAIL'), 'Resto admin');
+        });
+    }
+
+    public function setStatus($status, $note)
+    {
+        if ($this->status != $status) {
+            $this->status = $status;
+            $this->note = $note;
+            $this->sendCustomerNotification();
+        }
+    }
+
+    public function getStatusText()
+    {
+        switch ($this->status) {
+            case self::STATUS_ACCEPTED:
+                return 'Accepté';
+                break;
+            case self::STATUS_REFUSED:
+                return 'Refusé';
+                break;
+            case self::STATUS_NEW:
+                return 'En attente';
+                break;
+            default:
+                return 'En attente';
+        }
+    }
+
+    public function sendCustomerNotification()
+    {
+        $reservation = $this;
+        Mail::send('emails.reservation_status', [
+            'reservation' => $reservation,
+            'reservedAt' => $this->reserved_at,
+            'baseUrl' => env('BASE_URL'),
+        ], function ($m) use ($reservation) {
+            $m->from('no-reply@muschalle.com', 'RestoPresto');
+            $subject = 'Votre réservation est ' . strtolower($this->getStatusText());
+            $m->subject($subject);
+            $m->to(
+                $this->customer->email,
+                $this->customer->first_name . ' ' . $this->customer->last_name
+            );
+        });
     }
 }
