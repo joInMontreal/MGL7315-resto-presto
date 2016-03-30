@@ -14,6 +14,8 @@ class Reservations extends Controller
     const MINIMUM_SEC_BEFORE_RESERVATION = 3600;
     const MINIMUM_INVITE = 1;
     const MAXIMUM_INVITE = 16;
+    const NB_HOURS_MIN = 0.5;
+    const NB_HOURS_MAX = 5;
 
     protected $validator;
 
@@ -145,6 +147,16 @@ class Reservations extends Controller
         ]);
     }
 
+    protected function validateNdHours($nbHours)
+    {
+        if ($nbHours < self::NB_HOURS_MIN) {
+            throw new RestoError("La durée doit être au moins " . self::NB_HOURS_MIN . "h");
+        }
+        if ($nbHours > self::NB_HOURS_MAX) {
+            throw new RestoError("La durée doit être au maximum " . self::NB_HOURS_MAX . "h");
+        }
+    }
+
     public function confirm(Request $request)
     {
         try {
@@ -155,6 +167,7 @@ class Reservations extends Controller
             ], $this->translation());
             $reservationId = $request->json('reservation_id');
             $reservation = Reservation::find($reservationId);
+            $this->validateNdHours($request->json('nb_hours'));
 
             $reservation->nb_hours = $request->json('nb_hours');
             $reservation->setStatus($request->json('status'), $request->json('note'));

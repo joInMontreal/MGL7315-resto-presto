@@ -30,9 +30,6 @@
             <div class="form-group" >
                 <label for="input2" class="col-sm-2 control-label">Statut</label>
                 <div class="col-sm-10 btn-group" data-toggle="buttons">
-                    <label class="btn btn-default {{ ($statusNew == $reservation->status) ? 'active' : '' }}">
-                        <input type="radio" name="status" id="optionsRadios1" value="{{ $statusNew }}" {{ ($statusNew == $reservation->status) ? 'checked' : '' }}> Demande
-                    </label>
                     <label class="btn btn-default {{ ($statusAccepted == $reservation->status) ? 'active' : '' }}">
                         <input type="radio" name="status" id="optionsRadios2" value="{{ $statusAccepted }}" {{ ($statusAccepted == $reservation->status) ? 'checked' : '' }}> Accepté
                     </label>
