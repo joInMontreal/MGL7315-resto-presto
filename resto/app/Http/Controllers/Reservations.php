@@ -8,12 +8,12 @@ use App\Helpers\Validator;
 use App\Models\Customer;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class Reservations extends Controller
 {
     const MINIMUM_SEC_BEFORE_RESERVATION = 3600;
-    const MINIMUM_INVITE = 2;
+    const MINIMUM_INVITE = 1;
+    const MAXIMUM_INVITE = 16;
 
     protected $validator;
 
@@ -60,6 +60,10 @@ class Reservations extends Controller
         if ($nbInvites < self::MINIMUM_INVITE) {
             throw new RestoError("Une réservation doit avoir au moins " . self::MINIMUM_INVITE . " invités");
         }
+        if ($nbInvites > self::MAXIMUM_INVITE) {
+            throw new RestoError("Pour une réservation de plus de " . self::MAXIMUM_INVITE .
+                " personnes, s'il vous plaît nous appeler au 514-555-1212.");
+        }
     }
 
     public function reserve(Request $request)
@@ -90,6 +94,7 @@ class Reservations extends Controller
             );
             $customer->phone = $request->json('phone', '');
             $customer->save();
+            $this->validateNbInvites($request->json('nb_invites'));
             $reservation = Reservation::build(
                 $customer,
                 $reservedAt,

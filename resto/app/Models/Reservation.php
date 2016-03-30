@@ -54,7 +54,7 @@ class Reservation extends Model
         $reservation = $this;
         Mail::send('emails.reservation_new', [
             'reservation' => $reservation,
-            'reservedAt' => $this->reserved_at->format('Y-m-d H:i'),
+            'reservedAt' => $reservation->getReservedAtObject()->format('d/m/Y H\hi'),
             'baseUrl' => env('BASE_URL'),
         ], function ($m) use ($reservation) {
             $m->from('no-reply@muschalle.com', 'RestoPresto');
@@ -94,7 +94,7 @@ class Reservation extends Model
         $reservation = $this;
         Mail::send('emails.reservation_status', [
             'reservation' => $reservation,
-            'reservedAt' => $this->reserved_at,
+            'reservedAt' => $reservation->getReservedAtObject()->format('d/m/Y H\hi'),
             'baseUrl' => env('BASE_URL'),
         ], function ($m) use ($reservation) {
             $m->from('no-reply@muschalle.com', 'RestoPresto');
@@ -105,5 +105,23 @@ class Reservation extends Model
                 $this->customer->first_name . ' ' . $this->customer->last_name
             );
         });
+    }
+
+    public function getReservedAtObject()
+    {
+        if ($this->reserved_at instanceof \DateTime) {
+            return $this->reserved_at;
+        } else {
+            return \DateTime::createFromFormat('Y-m-d H:i:s', $this->reserved_at);
+        }
+    }
+
+    public function getCreatedAtObject()
+    {
+        if ($this->created_at instanceof \DateTime) {
+            return $this->created_at;
+        } else {
+            return \DateTime::createFromFormat('Y-m-d H:i:s', $this->created_at);
+        }
     }
 }
