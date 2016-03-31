@@ -26,7 +26,7 @@ $(function () {
 				if (response.status == 0) {
 					showErrorMessage(response.message, "error");
 				} else {
-					showErrorMessage("Reservation enregistré !", "success");
+					showErrorMessage("Reservation enregistrée !", "success");
 				}
 			},
 			error: function() {

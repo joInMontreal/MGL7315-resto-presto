@@ -149,11 +149,19 @@ class Reservations extends Controller
 
     protected function validateNdHours($nbHours)
     {
+        $nbHours = str_replace(',', '.', $nbHours);
         if ($nbHours < self::NB_HOURS_MIN) {
             throw new RestoError("La durée doit être au moins " . self::NB_HOURS_MIN . "h");
         }
         if ($nbHours > self::NB_HOURS_MAX) {
             throw new RestoError("La durée doit être au maximum " . self::NB_HOURS_MAX . "h");
+        }
+    }
+
+    protected function validateStatus($status)
+    {
+        if (!in_array($status, [Reservation::STATUS_ACCEPTED, Reservation::STATUS_REFUSED])) {
+            throw new RestoError("Renseignez le status accepté ou refusé");
         }
     }
 
@@ -163,13 +171,13 @@ class Reservations extends Controller
             $this->validator->validateRequest($request, [
                 'nb_hours' => Validator::VALIDATOR_NUMBER,
                 'note' => Validator::VALIDATOR_STRING,
-                'status' => Validator::VALIDATOR_NUMBER,
             ], $this->translation());
             $reservationId = $request->json('reservation_id');
             $reservation = Reservation::find($reservationId);
             $this->validateNdHours($request->json('nb_hours'));
 
-            $reservation->nb_hours = $request->json('nb_hours');
+            $reservation->setNbHours($request->json('nb_hours'));
+            $this->validateStatus($request->json('status'));
             $reservation->setStatus($request->json('status'), $request->json('note'));
             $reservation->save();
             $response = [

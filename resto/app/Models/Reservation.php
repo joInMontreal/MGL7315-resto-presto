@@ -76,10 +76,10 @@ class Reservation extends Model
     {
         switch ($this->status) {
             case self::STATUS_ACCEPTED:
-                return 'Accepté';
+                return 'Acceptée';
                 break;
             case self::STATUS_REFUSED:
-                return 'Refusé';
+                return 'Refusée';
                 break;
             case self::STATUS_NEW:
                 return 'En attente';
@@ -123,5 +123,10 @@ class Reservation extends Model
         } else {
             return \DateTime::createFromFormat('Y-m-d H:i:s', $this->created_at);
         }
+    }
+
+    public function setNbHours($nbHours)
+    {
+        $this->nb_hours = str_replace(',', '.', $nbHours);
     }
 }

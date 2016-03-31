@@ -32,7 +32,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">Votre réservation est {{ $reservation->getStatusText() }}</div>
+        <div class="title">Votre réservation est {{ strtolower($reservation->getStatusText()) }}</div>
         <p><strong>Date :</strong> {{ $reservedAt }}</p>
         <p><strong>Nombre d'invité :</strong> {{ $reservation->nb_invites }}</p>
         <p><strong>Durée :</strong> {{ $reservation->nb_hours }} h</p>

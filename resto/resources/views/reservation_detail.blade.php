@@ -54,5 +54,5 @@
 @endsection
 
 @section('js')
-    <script src="/assets/js/confirm.js?v1"></script>
+    <script src="/assets/js/confirm.js?v2"></script>
 @endsection

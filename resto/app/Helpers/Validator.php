@@ -30,6 +30,7 @@ class Validator
                     }
                     break;
                 case self::VALIDATOR_NUMBER:
+                    $value = str_replace(',', '.', $value);
                     if (!is_numeric($value)) {
                         throw new RestoError("{$field} n'est pas un nombre");
                     }
