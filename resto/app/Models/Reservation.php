@@ -76,10 +76,10 @@ class Reservation extends Model
     {
         switch ($this->status) {
             case self::STATUS_ACCEPTED:
-                return 'Accepté';
+                return 'Acceptée';
                 break;
             case self::STATUS_REFUSED:
-                return 'Refusé';
+                return 'Refusée';
                 break;
             case self::STATUS_NEW:
                 return 'En attente';
@@ -124,6 +124,11 @@ class Reservation extends Model
             return \DateTime::createFromFormat('Y-m-d H:i:s', $this->created_at);
         }
     }
+
+    public function setNbHours($nbHours)
+    {
+        $this->nb_hours = str_replace(',', '.', $nbHours);
+    }
     
     public function getPeriod()
     {
@@ -141,13 +146,5 @@ class Reservation extends Model
     {
         $reservDate = strtotime($this->reserved_at);
         return strftime("%H:%m", $reservDate);
-/*
-        if ($this->reserved_at instanceof \DateTime) {
-            return strftime("%H:%m", $this->reserved_at);
-        } else {
-            return strftime("%H:%m", \DateTime::createFromFormat('Y-m-d H:i:s', $this->created_at));
-        }
-        */
     }
-    
 }
