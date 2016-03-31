@@ -38,6 +38,8 @@
                 <ul class="nav navbar-nav">
                     <li @yield('menu_home')><a href="/">Accueil</a></li>
                     <li @yield('menu_reserve')><a href="/reserve">Poster une réservation</a></li>
+                    <li @yield('menu_requests')><a href="/gestion/requests">Demandes</a></li>
+                    <li @yield('menu_upcoming')><a href="/gestion/upcoming">Réservations</a></li>
 
                 </ul>
             </div><!--/.nav-collapse -->
