@@ -19,7 +19,6 @@
 				<th>Time</th>
 				<th>Name</th>
 				<th>Nb places</th>
-				<th>Status</th>
 				<th>Occasion</th>
 				<th>Note</th>
 			</tr>
@@ -31,7 +30,6 @@
 				<td>{{ $reservation->getTime() }}</td>
 				<td>{{ $reservation->customer->first_name }} {{ $reservation->customer->last_name }}</td>
 				<td>{{ $reservation->nb_invites }}</td>
-				<td>{{ $reservation->getStatusText() }}</td>
 				<td>{{ $reservation->occasion }}</td>
 				<td>{{ $reservation->note }}</td>
 			</tr>

@@ -18,8 +18,6 @@ Route::get('/reservation/{reservationId}/confirmation', 'Reservations@confirmati
 Route::get('/reservation/{reservationId}/detail', 'Reservations@detail');
 Route::post('/reserve', 'Reservations@reserve');
 Route::post('/reservation/{reservationId}/confirm', 'Reservations@confirm');
-Route::get('/gestion/upcoming', 'Gestion@upcoming');
-Route::get('/gestion/requests', 'Gestion@requests');
 Route::get('/gestion/data', 'Gestion@getdata');
 
 /*
@@ -34,5 +32,6 @@ Route::get('/gestion/data', 'Gestion@getdata');
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+	Route::get('/gestion/upcoming', 'Gestion@upcoming');
+	Route::get('/gestion/requests', 'Gestion@requests');
 });
