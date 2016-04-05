@@ -16,8 +16,8 @@
 		<thead>
 			<tr>
 				<th>Période</th>
-				<th>Time</th>
-				<th>Name</th>
+				<th>Heure</th>
+				<th>Nom</th>
 				<th>Nb places</th>
 				<th>Occasion</th>
 				<th>Note</th>
