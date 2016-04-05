@@ -15,7 +15,7 @@
 	<table class="table table-condensed">
 		<thead>
 			<tr>
-				<th>Periode</th>
+				<th>Période</th>
 				<th>Time</th>
 				<th>Name</th>
 				<th>Nb places</th>
@@ -26,7 +26,7 @@
 		<tbody>
 		@foreach($reservations as $reservation)
 			<tr>
-				<td>{{ $reservation->getPeriod() }}</td>
+				<td><a href="/reservation/{{ $reservation->id }}/detail">{{ $reservation->getPeriod() }}</a></td>
 				<td>{{ $reservation->getTime() }}</td>
 				<td>{{ $reservation->customer->first_name }} {{ $reservation->customer->last_name }}</td>
 				<td>{{ $reservation->nb_invites }}</td>
