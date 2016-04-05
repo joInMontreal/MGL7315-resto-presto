@@ -160,7 +160,8 @@ class Reservations extends Controller
 
     protected function validateStatus($status)
     {
-        if (!in_array($status, [Reservation::STATUS_ACCEPTED, Reservation::STATUS_REFUSED])) {
+        if (!in_array($status, [Reservation::STATUS_ACCEPTED, Reservation::STATUS_REFUSED])
+        ) {
             throw new RestoError("Renseignez le status accepté ou refusé");
         }
     }

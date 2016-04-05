@@ -32,6 +32,6 @@ Route::get('/gestion/data', 'Gestion@getdata');
 */
 
 Route::group(['middleware' => ['web']], function () {
-	Route::get('/gestion/upcoming', 'Gestion@upcoming');
-	Route::get('/gestion/requests', 'Gestion@requests');
+    Route::get('/gestion/upcoming', 'Gestion@upcoming');
+    Route::get('/gestion/requests', 'Gestion@requests');
 });
