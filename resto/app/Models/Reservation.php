@@ -146,6 +146,6 @@ class Reservation extends Model
     public function getTime()
     {
         $reservDate = strtotime($this->reserved_at);
-        return strftime("%H:%m", $reservDate);
+        return strftime("%H:%M", $reservDate);
     }
 }
