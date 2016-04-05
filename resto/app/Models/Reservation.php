@@ -141,7 +141,7 @@ class Reservation extends Model
         $mois = date('m', $reservDate);
         $jour = date('D', $reservDate);
         $num = date('j', $reservDate);
-        switch($mois) {
+        switch ($mois) {
             case "01":
                 $mois = "Jan";
                 break;
@@ -179,7 +179,7 @@ class Reservation extends Model
                 $mois = "Déc";
                 break;
         }
-        switch($jour) {
+        switch ($jour) {
             case "Sun":
                 $jour = "Dim";
                 break;
