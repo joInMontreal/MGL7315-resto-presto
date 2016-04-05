@@ -28,8 +28,8 @@
 	<table id="tbl" class="table table-condensed">
 		<thead>
 			<tr>
-				<th class='sortable @if($orderCriteria == "Periode") @if($order == "asc") sortdown @else sortup @endif @else sortboth @endif'>Période</th>
-				<th class='sortable @if($orderCriteria == "Time") @if($order == "asc") sortdown @else sortup @endif @else sortboth @endif'>Heure</th>
+				<th class='sortable @if($orderCriteria == "Période") @if($order == "asc") sortdown @else sortup @endif @else sortboth @endif'>Période</th>
+				<th class='sortable @if($orderCriteria == "Heure") @if($order == "asc") sortdown @else sortup @endif @else sortboth @endif'>Heure</th>
 				<th>Nom</th>
 				<th class='sortable @if($orderCriteria == "Nb places") @if($order == "asc") sortdown @else sortup @endif @else sortboth @endif'>Nb places</th>
 				<th>Status</th>
