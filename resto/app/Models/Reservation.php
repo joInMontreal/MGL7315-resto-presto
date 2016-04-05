@@ -132,15 +132,78 @@ class Reservation extends Model
 
     public function getPeriod()
     {
-        setlocale(LC_TIME, "fr_FR");
         $reservDate = strtotime($this->reserved_at);
         if (date('H', $reservDate) > 16) {
             $period = "souper";
         } else {
             $period = "diner";
         }
-        return strftime("%A le %d %b.", $reservDate) . " / " . $period;
-        //return $this->getReservedAtObject()->format('D/m/Y H\hi');
+        $mois = date('m', $reservDate);
+        $jour = date('D', $reservDate);
+        $num = date('j', $reservDate);
+        switch($mois) {
+            case "01":
+                $mois = "Jan";
+                break;
+            case "02":
+                $mois = "Fév";
+                break;
+            case "03":
+                $mois = "Mar";
+                break;
+            case "04":
+                $mois = "Avr";
+                break;
+            case "05":
+                $mois = "Mai";
+                break;
+            case "06":
+                $mois = "Jun";
+                break;
+            case "07":
+                $mois = "Jui";
+                break;
+            case "08":
+                $mois = "Aou";
+                break;
+            case "09":
+                $mois = "Sep";
+                break;
+            case "10":
+                $mois = "Oct";
+                break;
+            case "11":
+                $mois = "Nov";
+                break;
+            case "12":
+                $mois = "Déc";
+                break;
+        }
+        switch($jour) {
+            case "Sun":
+                $jour = "Dim";
+                break;
+            case "Mon":
+                $jour = "Lun";
+                break;
+            case "Tue":
+                $jour = "Mar";
+                break;
+            case "Wed":
+                $jour = "Mer";
+                break;
+            case "Thu":
+                $jour = "Jeu";
+                break;
+            case "Fri":
+                $jour = "Ven";
+                break;
+            case "Sat":
+                $jour = "Sam";
+                break;
+        }
+        return "".$jour." le ".$num." ".$mois." / ".$period;
+        //return strftime("%A le %d %b.", $reservDate) . " / " . $period;
     }
 
     public function getTime()

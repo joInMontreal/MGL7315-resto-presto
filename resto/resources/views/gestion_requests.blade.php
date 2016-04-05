@@ -57,5 +57,4 @@
 
 @section('js')
     <script src="/assets/js/gestion.js"></script>
-    <script src="/assets/js/jquery.tablesorter.min.js"></script>
 @endsection

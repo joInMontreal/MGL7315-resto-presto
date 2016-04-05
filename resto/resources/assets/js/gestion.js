@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-	//$("#tbl").tablesorter();
 });
 
 $('#statusFilter').on('change', function(e){
@@ -8,6 +7,5 @@ $('#statusFilter').on('change', function(e){
 
 $('#tbl').on('click', 'th.sortable', function(){
     var th=$(this).index();
-    //alert('Column number is : ' + th + ' and text is : ' + $(this).text());
 	window.location.href='/gestion/requests?status=' + $('#statusFilter').val() + '&sort=' + $(this).text();
 });

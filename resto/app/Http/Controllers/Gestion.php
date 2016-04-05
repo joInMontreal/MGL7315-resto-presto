@@ -84,10 +84,4 @@ class Gestion extends Controller
             'order' => $order
         ]);
     }
-
-    public function getdata()
-    {
-        $list = Reservation::where('status', '=', 0)->get();
-        return $list->toJson();
-    }
 }
