@@ -129,4 +129,23 @@ class Reservation extends Model
     {
         $this->nb_hours = str_replace(',', '.', $nbHours);
     }
+
+    public function getPeriod()
+    {
+        setlocale(LC_TIME, "fr_FR");
+        $reservDate = strtotime($this->reserved_at);
+        if (date('H', $reservDate) > 16) {
+            $period = "souper";
+        } else {
+            $period = "diner";
+        }
+        return strftime("%A le %d %b.", $reservDate) . " / " . $period;
+        //return $this->getReservedAtObject()->format('D/m/Y H\hi');
+    }
+
+    public function getTime()
+    {
+        $reservDate = strtotime($this->reserved_at);
+        return strftime("%H:%m", $reservDate);
+    }
 }

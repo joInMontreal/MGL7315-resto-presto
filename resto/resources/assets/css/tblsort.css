@@ -1,0 +1,16 @@
+table thead tr .sortable {
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+	padding-right: 15px;
+}
+
+table thead tr .sortboth {
+	background-image: url(/assets/img/bg.gif);
+}
+table thead tr .sortup {
+	background-image: url(/assets/img/asc.gif);
+}
+table thead tr .sortdown {
+	background-image: url(/assets/img/desc.gif);
+}
