@@ -1,6 +1,13 @@
+@font-face {
+	src: url(fonts/BoyzRGrossNF.woff);
+	font-family: BoyzRGrossNF;
+}
+
 /* Space out content a bit */
 body {
 	padding-bottom: 20px;
+	/*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+	font-family: "Century Gothic";
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -75,4 +82,33 @@ body {
 	.jumbotron {
 		border-bottom: 0;
 	}
+}
+
+.navbar-default {
+	background-color: #FEA347;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a {
+	color: #545656;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+	color: #dddddd;
+	background-color: #545656;
+}
+
+.jumbotron {
+	background-color: #ffe8c0;
+}
+
+.navbar-brand img {
+	margin-top:-10px;
+}
+.brand-text {
+	font-family: BoyzRGrossNF;
+	font-size: 35px;
+	padding-top:20px;
 }
