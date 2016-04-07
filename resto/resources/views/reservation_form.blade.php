@@ -34,9 +34,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="input6" class="col-sm-4 control-label">Email</label>
+                <label for="input6" class="col-sm-4 control-label">Courriel</label>
                 <div class="col-sm-8">
-                    <input required name="email" type="email" class="form-control" id="input6" placeholder="Email">
+                    <input required name="email" type="email" class="form-control" id="input6" placeholder="Courriel">
                 </div>
             </div>
             <div class="form-group">
